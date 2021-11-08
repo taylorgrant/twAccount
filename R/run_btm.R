@@ -15,7 +15,7 @@
 #' @return .rds file - x_phi is scaled x,y coordinates for topics, term_info is the top n terms;
 #' both are based on lambda - 0.6; json is the json object from `LDAvis` package
 #' @export
-#'
+#' @importFrom stats predict
 #' @examples
 #' \dontrun{
 #' run_btm("BMWUSA", data_source = 'timeline', n_topics = 40, n_terms = 30)
@@ -50,7 +50,7 @@ run_btm <- function(handle, data_source = c("timeline", "mentions"), n_topics, n
   # calculated and extract parameters
   phi <- t(tm1$phi)
   docsize <- table(x$doc_id)
-  scores  <- predict(tm1, x)
+  scores  <- stats::predict(tm1, x)
   scores  <- scores[names(docsize), ]
   theta <- scores
   doc.length <- as.integer(docsize)
