@@ -11,9 +11,11 @@ well as the mentions of that brand.
 Twitter extraction capabilities are courtesy of `rtweet`. Image
 processing and conversion into collages is thanks to the `magick`
 package. The topic modeling process relies on the `BTM` package, which
-is designed for short texts as opposed to standard LDA, which relies on
-a larger corpus. The `BTM` output is then processed using several
-functions borrowed from the `LDAvis` package.
+is
+<a href="https://github.com/xiaohuiyan/xiaohuiyan.github.io/blob/master/paper/BTM-WWW13.pdf" target="_blank">designed for short texts</a>
+as opposed to standard LDA, which relies on a larger corpus. The `BTM`
+output is then processed using several functions borrowed from the
+`LDAvis` package.
 
 ## Installation
 
@@ -52,7 +54,7 @@ specified by the user).
 
 Estimation of the 2d space relies upon the
 <a href="https://en.wikipedia.org/wiki/Jensen%E2%80%93Shannon_divergence" target="_blank">Jensen-Shannon Divergence</a>,
-the estimates of which are then scaled with PCA. This allows for easy
+the estimates of which are then scaled via PCA. This allows for easy
 visualization of the topics on an X,Y axis. For example, if we took the
 last 3,200 tweets from the
 <a href="https://twitter.com/BMWUSA?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank">BMWUSA</a>
