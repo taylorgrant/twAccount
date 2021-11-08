@@ -22,8 +22,11 @@
 #' }
 run_btm <- function(handle, data_source = c("timeline", "mentions"), n_topics, n_terms) {
 
-  # load udpipe model for POS tagging
+  # adding all directory locations
   aa <- file.path(here::here(), "account_analysis")
+  d <- file.path(here::here(), "account_analysis", fs::path_sanitize(handle))
+  d2 <<- file.path(d, as.character(Sys.Date()))
+  # load udpipe model for POS tagging
   ud_model <- udpipe::udpipe_download_model(language = "english",
                                             model_dir = aa)
   f <- file.path(d2, glue::glue("{handle}_twitter_info.rds"))
