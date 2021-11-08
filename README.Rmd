@@ -49,27 +49,8 @@ Once the data is extracted, a model is run to estimate topic models based upon t
 
 Estimation of the 2d space relies upon the [Jensen-Shannon Divergence](https://en.wikipedia.org/wiki/Jensen%E2%80%93Shannon_divergence){target="_blank"}, the estimates of which are then scaled via PCA. This allows for easy visualization of the topics on an X,Y axis. For example, if we took the last 3,200 tweets from the [BMWUSA](https://twitter.com/BMWUSA?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor){target="_blank"} account, a version of the 2d topic model representation would look like the below. This can be presented in a static graph, or in an html rmarkdown file using the `crosstalk` package, or you can simply use the d3 visualization from `LDAvis`.  
 
-```{r example, cache = TRUE, out.width = '80%', echo = FALSE, fig.align="center"}
-x_phi <- readRDS("/Users/taylor_grant/account_analysis/BMWUSA/2021-11-07/BMWUSA_tm_timeline.rds")$x_phi
-ggplot(x_phi, aes(x = x, y = y, label = id)) +
-  geom_vline(xintercept = 0, color = "gray") +
-  geom_hline(yintercept = 0, color = "gray") +
-  geom_point(aes(size = frac), color = my_pal('bly')[2],
-             alpha = .3) +
-  geom_point(aes(size = frac), shape = 1,colour = "gray") +
-  geom_text(size = 3, color = "black") +
-  scale_size(range = c(0, 30)) +
-  theme_twg(grid = FALSE) +
-  theme(legend.position = "none",
-        axis.text.x = element_blank(),
-        axis.text.y = element_blank()) +
-  annotate("text", x = 0.01, y = (1.18*max(x_phi$y)),
-           label = "PC2", color = "#303030") +
-  annotate("text", x = 1.05*min(x_phi$x), y = .01,
-           label = "PC1", color = '#303030') +
-  labs(x = NULL, y =  NULL,
-       title = "Intertopic Distance Map (via multidimensional scaling)",
-       caption = expression(paste(lambda, 'set to 0.6')))
+```{r pressure, echo=FALSE, fig.cap="A caption", out.width = '90%'}
+knitr::include_graphics(here::here('man', "figures", "README-example-1.png"))
 ```
 
 ## Using the package 
