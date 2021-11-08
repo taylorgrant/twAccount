@@ -10,7 +10,7 @@ tm_clean_tweets(tbl)
 \item{tbl}{tibble or data.frame}
 }
 \value{
-
+tibble with 2 columns - status id and cleaned text
 }
 \description{
 Simple convenience function that cleans tweets. Removes urls, mentions,

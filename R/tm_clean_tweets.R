@@ -5,9 +5,9 @@
 #'
 #' @param tbl tibble or data.frame
 #'
-#' @return
+#' @return tibble with 2 columns - status id and cleaned text
 #' @export
-#'
+#' @importFrom graphics text
 #' @examples
 #' \dontrun{
 #' out <- tm_clean_tweets(tbl)

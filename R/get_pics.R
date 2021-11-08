@@ -20,7 +20,7 @@ get_pics <- function(dir, tbl) {
     dplyr::mutate(year = lubridate::year(created_at)) %>%
     dplyr::arrange(year, created_at) %>%
     dplyr::group_by(year) %>%
-    dplyr::mutate(index = row_number(),
+    dplyr::mutate(index = dplyr::row_number(),
                   index = stringr::str_pad(index, 2, pad = "0"),
                   img_ct = lengths(ext_media_url))
 
