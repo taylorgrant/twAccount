@@ -16,12 +16,16 @@ RoxygenNote: 7.1.2
 URL: https://github.com/taylorgrant/twAccount
 BugReports: https://github.com/taylorgrant/twAccount/issues
 Imports: 
+    crayon,
     dplyr,
+    fs,
+    here,
     lubridate,
     magick,
     magrittr,
     purrr,
     qdapRegex,
+    rtweet,
     stringr,
     tibble,
     tidyr

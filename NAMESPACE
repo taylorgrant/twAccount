@@ -3,6 +3,7 @@
 export(dir_create)
 export(extract_images)
 export(get_pics)
+export(get_twitter)
 export(image_read_fn)
 export(make_collage)
 export(tm_clean_tweets)
