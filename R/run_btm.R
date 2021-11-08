@@ -80,7 +80,7 @@ run_btm <- function(handle, data_source = c("timeline", "mentions"), n_topics, n
   topic.frequency <- topic.frequency[o]
   topic.proportion <- topic.proportion[o]
   # get the topic coordinates using
-  x_phi <- jsPCA(phi)
+  x_phi <- LDAvis::jsPCA(phi)
   x_phi <- x_phi %>% dplyr::mutate(id = dplyr::row_number())
   # add topic proportion for sizing of each
   x_phi <- x_phi %>%
