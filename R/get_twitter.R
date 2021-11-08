@@ -51,17 +51,13 @@ get_twitter <- function(handle, search_query = NULL) {
   as.character(unique(pics$year)) %>%
     purrr::walk(make_collage)
 
-  # decoding short links
-  cat(crayon::blue("Decoding short links...\n"))
-  links <- decode_links(tl)
   ## save if no mention search
   if (is.null(search_query)) {
     cat(crayon::blue("Putting things away...\n"))
     saveRDS(
       object = list(
         user = user,
-        timeline = tl,
-        links = links
+        timeline = tl
       ),
       file = file.path(d2, paste0(handle,"_twitter_info.rds"))
     )
@@ -77,8 +73,7 @@ get_twitter <- function(handle, search_query = NULL) {
     object = list(
       user = user,
       timeline = tl,
-      mentions = mentions,
-      links = links
+      mentions = mentions
     ),
     file = file.path(d2, paste0(handle,"_twitter_info.rds"))
   )
