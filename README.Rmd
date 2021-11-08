@@ -49,8 +49,8 @@ Once the data is extracted, a model is run to estimate topic models based upon t
 
 Estimation of the 2d space relies upon the [Jensen-Shannon Divergence](https://en.wikipedia.org/wiki/Jensen%E2%80%93Shannon_divergence){target="_blank"}, the estimates of which are then scaled via PCA. This allows for easy visualization of the topics on an X,Y axis. For example, if we took the last 3,200 tweets from the [BMWUSA](https://twitter.com/BMWUSA?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor){target="_blank"} account, a version of the 2d topic model representation would look like the below. This can be presented in a static graph, or in an html rmarkdown file using the `crosstalk` package, or you can simply use the d3 visualization from `LDAvis`.  
 
-```{r example, out.width = '80%', echo = FALSE, fig.align="center"}
-x_phi <- readRDS(here::here("data", "x_phi.rds")) 
+```{r example, cache = TRUE, out.width = '80%', echo = FALSE, fig.align="center"}
+x_phi <- readRDS("/Users/taylor_grant/account_analysis/BMWUSA/2021-11-07/BMWUSA_tm_timeline.rds")$x_phi
 ggplot(x_phi, aes(x = x, y = y, label = id)) +
   geom_vline(xintercept = 0, color = "gray") +
   geom_hline(yintercept = 0, color = "gray") +
@@ -76,7 +76,7 @@ ggplot(x_phi, aes(x = x, y = y, label = id)) +
 
 Ideally, the user would create a new project within RStudio, but this package will build out a new directory in the current working directory of the user. 
 
-After running the `twitter_tm()` function, the new directory will follow this structure. 
+After running the `twitter_tm()` function, the new directory will follow this structure 
 
 ```
 ├── [HANDLE]

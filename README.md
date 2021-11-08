@@ -72,7 +72,7 @@ package will build out a new directory in the current working directory
 of the user.
 
 After running the `twitter_tm()` function, the new directory will follow
-this structure.
+this structure
 
     ├── [HANDLE]
     │   └── [RUN DATE]
