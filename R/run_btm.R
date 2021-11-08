@@ -63,7 +63,7 @@ run_btm <- function(handle, data_source = c("timeline", "mentions"), n_topics, n
   vocab <- tm1$vocabulary$token
   term.frequency = tm1$vocabulary$freq
   ## JSON file for LDAvis (d3 and JS)
-  json <- createJSON(
+  json <- LDAvis::createJSON(
     phi = t(tm1$phi),
     theta = scores,
     doc.length = as.integer(docsize),
