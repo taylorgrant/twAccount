@@ -8,9 +8,11 @@ extract a brand’s Twitter timeline, visualize the brand identity through
 the imagery posted and estimate topic models for both the timeline as
 well as the mentions of that brand.
 
-The topic modeling process relies on the `BTM` package, which is
-designed for short texts as opposed to standard LDA, which relies on a
-larger corpus. The `BTM` output is then processed using several
+Twitter extraction capabilities are courtesy of `rtweet`. Image
+processing and conversion into collages is thanks to the `magick`
+package. The topic modeling process relies on the `BTM` package, which
+is designed for short texts as opposed to standard LDA, which relies on
+a larger corpus. The `BTM` output is then processed using several
 functions borrowed from the `LDAvis` package.
 
 ## Installation
@@ -24,10 +26,18 @@ devtools::install_github("taylorgrant/twAccount")
 remotes::install_github("taylorgrant/twAccount")
 ```
 
-## Data Extracted
+## Usage
+
+``` r
+# Full Usage 
+twitter_tm("BMWUSA", search_query = "bmw", topic_ct = 40, term_ct = 30)
+
+# If you already have a dataset extracted using rtweet, you can topic model with:
+run_btm("BMWUSA", data_source = 'timeline', n_topics = 40, n_terms = 30)
+```
 
 The package provides an overall wrapper function `twitter_tm()` that
-will (1) extract a brand’s Twitter timeline, (2) recent, public tweets
+will extract (1) a brand’s Twitter timeline, (2) recent, public tweets
 matching a boolean search, and (3) all images that a brand has included
 in its publicly available tweets.
 
@@ -41,8 +51,8 @@ as well as the top N most salient terms for each topic (N terms
 specified by the user).
 
 Estimation of the 2d space relies upon the
-<a href="https://en.wikipedia.org/wiki/Jensen%E2%80%93Shannon_divergence" target="_blank">Jensen-Shannon Divergence</a>
-methodology following by scaling with PCA. This allows for easy
+<a href="https://en.wikipedia.org/wiki/Jensen%E2%80%93Shannon_divergence" target="_blank">Jensen-Shannon Divergence</a>,
+the estimates of which are then scaled with PCA. This allows for easy
 visualization of the topics on an X,Y axis. For example, if we took the
 last 3,200 tweets from the
 <a href="https://twitter.com/BMWUSA?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank">BMWUSA</a>
@@ -62,7 +72,7 @@ of the user.
 After running the `twitter_tm()` function, the new directory will follow
 this structure.
 
-    ├── BMWUSA
+    ├── [HANDLE]
     │   └── [RUN DATE]
     │       ├── [FIRST YEAR OF TWEETS]
     │       ├── [NEXT YEAR OF TWEETS]
