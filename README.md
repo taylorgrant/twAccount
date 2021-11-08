@@ -3,8 +3,10 @@
 
 # twAccount
 
-<!-- badges: start -->
-<!-- badges: end -->
+Extract a brand’s Twitter timeline, visualize the brand identity through
+the imagery posted and topic model both the timeline and mentions of
+that brand. Topic modeling relies on the `BTM` package, which is
+designed for short texts as opposed to standard LDA topic modeling.
 
 ## Installation
 
@@ -18,12 +20,19 @@ devtools::install_github("taylorgrant/twAccount")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+The package provides an overall wrapper function `twitter_tm()` that
+will (1) extract a brand’s Twitter timeline, (2) recent, public tweets
+matching a boolean search, and (3) all images that a brand has included
+in its publicly available tweets.
 
-``` r
-# library(twAccount)
-## basic example code
-```
+Once the data is extracted, a model is run to estimate topic models
+based upon the Biterm Topic Models algorithm in the `BTM` package.
+Currently, the model is specified to run based on the number of topics
+selected by the user, rather than running through a series of topic
+sizes and maximizing the log-likelihood (maybe later).
+
+The BTM topics are then placed into 2d space using the Jensen-Shannon
+Divergence methodology and then scaling with PCA. For example, the
 
 What is special about using `README.Rmd` instead of just `README.md`?
 You can include R chunks like so:
