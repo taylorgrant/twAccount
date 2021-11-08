@@ -77,7 +77,7 @@ get_twitter <- function(handle, search_query = NULL) {
     object = list(
       user = user,
       timeline = tl,
-      mentions = mentions
+      mentions = mentions,
       links = links
     ),
     file = file.path(d2, paste0(handle,"_twitter_info.rds"))
