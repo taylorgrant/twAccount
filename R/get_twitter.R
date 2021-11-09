@@ -44,13 +44,6 @@ get_twitter <- function(handle, search_query = NULL) {
   tl <- dplyr::mutate(tl, dow = lubridate::wday(created_at, label=TRUE, abbr=FALSE))
   tl <- dplyr::mutate(tl, hr = lubridate::hour(created_at))
 
-  # picture collage from handle timeline
-  cat(crayon::blue(paste0("Saving pictures from ", handle,"'s timeline...\n")))
-  pics <- get_pics(d2, tl)
-  cat(crayon::blue("Making some collages...\n"))
-  as.character(unique(pics$year)) %>%
-    purrr::walk(make_collage)
-
   ## save if no mention search
   if (is.null(search_query)) {
     cat(crayon::blue("Putting things away...\n"))
@@ -77,4 +70,11 @@ get_twitter <- function(handle, search_query = NULL) {
     ),
     file = file.path(d2, paste0(handle,"_twitter_info.rds"))
   )
+
+  # picture collage from handle timeline
+  cat(crayon::blue(paste0("Saving pictures from ", handle,"'s timeline...\n")))
+  pics <- get_pics(d2, tl)
+  cat(crayon::blue("Making some collages...\n"))
+  as.character(unique(pics$year)) %>%
+    purrr::walk(make_collage)
 }
