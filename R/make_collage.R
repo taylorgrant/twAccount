@@ -64,7 +64,7 @@ make_collage <- function(year) {
                                               pattern = paste0(year, "collage"),
                                               full.names = TRUE)),
                        stack = FALSE) %>%
-    magick::image_write(paste0(folder_loc, year, 'final_collage.jpg'))
+    magick::image_write(paste0(folder_loc, year, '_final_collage.jpg'))
 }
 
 #' build the image columns to be collaged
