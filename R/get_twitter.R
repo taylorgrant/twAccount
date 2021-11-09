@@ -1,10 +1,12 @@
 #' Get Twitter Timeline
 #'
 #' Extract 3,200 tweets from a timeline, extract all pictures and save timeline
-#' asa .rds file to new folder. Note that this creates a new directory in the current
-#' working directory. "~/working_directory/account_analysis/handle/Sys.Date"
+#' as a .rds file to new folder. Note that this creates a new directory in the current
+#' working directory. "~/working_directory/account_analysis/handle/Sys.Date" Imagery
+#' search also creates new folders for each year and also a /final_collage/ folder where
+#' all images from each year are appended into a single image.
 #'
-#' If search_query is added, also pulls 18,000 recent tweets matching the query.
+#' If search_query is added, function also pulls 18,000 recent tweets matching the query.
 #' Mentions are also saved into the .rds file.
 #'
 #' Heavily reliant on the `rtweet` package. Read the package tutorial for how to

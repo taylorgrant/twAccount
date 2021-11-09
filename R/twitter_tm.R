@@ -6,7 +6,8 @@
 #'
 #' This is the only function that needs to be run. Everything else works in the background.
 #'
-#' Relies heavily on `rtweet` `BTM` and `LDAvis` packages.
+#' Relies heavily on `rtweet` `BTM` and `LDAvis` packages. See `rtweet` documentation
+#' for Twitter API access.
 #'
 #' @param handle Twitter handle without `@` sign
 #' @param search_query boolean search query

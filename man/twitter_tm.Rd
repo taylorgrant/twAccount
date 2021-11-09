@@ -26,7 +26,8 @@ algorithm to model TM of both the timeline and mentions.
 \details{
 This is the only function that needs to be run. Everything else works in the background.
 
-Relies heavily on \code{rtweet} \code{BTM} and \code{LDAvis} packages.
+Relies heavily on \code{rtweet} \code{BTM} and \code{LDAvis} packages. See \code{rtweet} documentation
+for Twitter API access.
 }
 \examples{
 \dontrun{

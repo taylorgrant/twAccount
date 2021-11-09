@@ -10,7 +10,7 @@ make_collage(year)
 \item{year}{vector of years to compile}
 }
 \value{
-
+12xn collage in /final_cols/ folder
 }
 \description{
 Create a 12xN size collage. Takes photos and appends them into

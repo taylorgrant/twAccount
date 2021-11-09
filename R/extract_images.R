@@ -1,10 +1,10 @@
 #' Extract and save images
 #'
-#' Work through a data.frame or tibble of Twitter post data to extract and save images in
+#' Work through an `rtweet` timeline object to extract and save images in
 #' specific folders. If multiple images were posted in a grid, this extracts each and
 #' puts them into a grid format. If 2 images, a 1x1, if more than 2 it automatically
 #' gets put into a 2x2 tile using `magick::image_montage()`.
-#' We use a helper function to read and scale images so that we can montage without
+#' A helper function reads and scales images so that we can montage without
 #' needing to map, per \url{https://stackoverflow.com/questions/52833932/pass-a-list-of-image-objects-to-a-r-magick-function-instead-of-a-vector}
 #'
 #' @param year Year of the Twitter post
