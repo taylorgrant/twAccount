@@ -18,8 +18,8 @@
 make_collage <- function(year) {
 
   file_count <- length(dir(file.path(d2,year)))
-  no_cols <- 12
-  no_rows <- ceiling(file_count/no_cols)
+  no_rows <- 12
+  no_cols <- ceiling(file_count/no_rows)
 
   # get number of files that need to be blanks
   max_count <- no_rows*no_cols
