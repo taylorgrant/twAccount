@@ -24,7 +24,7 @@ make_collage <- function(year) {
   #   no_rows <- 10
   # }
   no_cols <- 12
-  no_cols <- ceiling(file_count/no_cols)
+  no_rows <- ceiling(file_count/no_cols)
 
   # get number of files that need to be blanks
   max_count <- no_rows*no_cols
