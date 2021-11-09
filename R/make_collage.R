@@ -47,12 +47,12 @@ make_collage <- function(year) {
       magick::image_append(stack = FALSE) %>%
       magick::image_write(paste0(folder_loc, year, "_collage_",c,".jpg"))
   }
-  nn <- tibble(a = seq(1, length(colfiles))) %>%
-    mutate(c = stringr::str_pad(floor(a/10), 2, pad = "0")) %>%
-    group_by(c) %>%
-    slice(c(1,n())) %>%
-    mutate(b = lag(a)) %>%
-    filter(!is.na(b))
+  nn <- tibble::tibble(a = seq(1, length(colfiles))) %>%
+    dplyr::mutate(c = stringr::str_pad(floor(a/10), 2, pad = "0")) %>%
+    dplyr::group_by(c) %>%
+    dplyr::slice(c(1, dplyr::n())) %>%
+    dplyr::mutate(b = dplyr::lag(a)) %>%
+    dplyr::filter(!is.na(b))
   purrr::pwalk(list(nn$a, nn$b, nn$c), parse_cols)
   # build into final collage
   magick::image_append(magick::image_read(dir(file.path(folder_loc),
