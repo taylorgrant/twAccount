@@ -25,7 +25,7 @@ get_pics <- function(dir, tbl) {
                   img_ct = lengths(ext_media_url))
 
   # create folders for everything
-  folder_names <- c( "local_cols", unique(tmp$year))
+  folder_names <- c( "local_cols", "final_cols", unique(tmp$year))
   purrr::map(file.path(dir, folder_names), dir_create)
 
   purrr::pwalk(list(tmp$year, tmp$index, tmp$img_ct, tmp$ext_media_url), extract_images)

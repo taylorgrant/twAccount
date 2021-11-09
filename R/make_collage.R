@@ -7,7 +7,7 @@
 #'
 #' @param year vector of years to compile
 #'
-#' @return
+#' @return 12xn collage in /final_cols/ folder
 #' @export
 #' @importFrom stats lag
 #'
@@ -18,12 +18,6 @@
 make_collage <- function(year) {
 
   file_count <- length(dir(file.path(d2,year)))
-
-  # if (file_count > 120) {
-  #   no_rows <- 12
-  # } else {
-  #   no_rows <- 10
-  # }
   no_cols <- 12
   no_rows <- ceiling(file_count/no_cols)
 
@@ -49,23 +43,23 @@ make_collage <- function(year) {
   # subset collages
   parse_cols <- function(a, b, c) {
     magick::image_read(file.path(folder_loc, colfiles)[b:a]) %>%
-      magick::image_scale("1000x1000") %>%
+      magick::image_scale("500x1000") %>%
       magick::image_append(stack = FALSE) %>%
-      magick::image_write(paste0(folder_loc, year, "collage_",c,".jpg"))
+      magick::image_write(paste0(folder_loc, year, "_collage_",c,".jpg"))
   }
-  nn <- tibble::tibble(a = seq(1, length(colfiles))) %>%
-    dplyr::mutate(c = floor(a/10)) %>%
-    dplyr::group_by(c) %>%
-    dplyr::slice(c(1, dplyr::n())) %>%
-    dplyr::mutate(b = dplyr::lag(a)) %>%
-    dplyr::filter(!is.na(b))
+  nn <- tibble(a = seq(1, length(colfiles))) %>%
+    mutate(c = stringr::str_pad(floor(a/10), 2, pad = "0")) %>%
+    group_by(c) %>%
+    slice(c(1,n())) %>%
+    mutate(b = lag(a)) %>%
+    filter(!is.na(b))
   purrr::pwalk(list(nn$a, nn$b, nn$c), parse_cols)
   # build into final collage
   magick::image_append(magick::image_read(dir(file.path(folder_loc),
-                                              pattern = paste0(year, "collage"),
+                                              pattern = paste0(year, "_collage"),
                                               full.names = TRUE)),
                        stack = FALSE) %>%
-    magick::image_write(paste0(folder_loc, year, '_final_collage.jpg'))
+    magick::image_write(paste0(d2, "/final_cols/", year, '_final_collage.jpg'))
 }
 
 #' build the image columns to be collaged
@@ -81,6 +75,7 @@ make_column <- function(i, files, no_rows, year){
     dplyr::filter(!is.na(f)) %>%
     dplyr::pull()
 
+  i <- stringr::str_pad(i, 2, pad = "0")
   magick::image_read(ff) %>%
     magick::image_append(stack = TRUE) %>%
     magick::image_write(

@@ -58,7 +58,7 @@ get_twitter <- function(handle, search_query = NULL) {
   } else
     # grab mentions via twitter search
     cat(crayon::blue(paste0("Searching for tweets mentioning '",search_query,"'\n")))
-  mentions <- rtweet::search_tweets(q = search_query, n = 18000, type = "recent",
+    mentions <- rtweet::search_tweets(q = search_query, n = 18000, type = "recent",
                                     include_rts=FALSE, lang = "en")
 
   # save including mentions
@@ -77,4 +77,6 @@ get_twitter <- function(handle, search_query = NULL) {
   cat(crayon::blue("Making some collages...\n"))
   as.character(unique(pics$year)) %>%
     purrr::walk(make_collage)
+  # remove collage folder
+  unlink(file.path(d2, "local_cols"), recursive = TRUE)
 }
