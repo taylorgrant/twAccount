@@ -45,10 +45,26 @@ make_collage <- function(year) {
   # put together
   folder_loc <- file.path(d2, "local_cols/")
   colfiles <- dir(folder_loc, pattern = year)
-  magick::image_read(file.path(folder_loc, colfiles)) %>%
-    magick::image_scale("500x1000") %>%
-    magick::image_append(stack = FALSE) %>%
-    magick::image_write(paste0(folder_loc, year,"collage.jpg"))
+  # subset collages
+  parse_cols <- function(a, b, c) {
+    magick::image_read(file.path(folder_loc, colfiles)[b:a]) %>%
+      magick::image_scale("1000x1000") %>%
+      magick::image_append(stack = FALSE) %>%
+      magick::image_write(paste0(folder_loc, year, "collage_",c,".jpg"))
+  }
+  nn <- tibble(a = seq(1, length(colfiles))) %>%
+    mutate(c = floor(a/10)) %>%
+    group_by(c) %>%
+    slice(c(1,n())) %>%
+    mutate(b = lag(a)) %>%
+    filter(!is.na(b))
+  purrr::pwalk(list(nn$a, nn$b, nn$c), parse_cols)
+  # build into final collage
+  magick::image_append(magick::image_read(dir(file.path(folder_loc),
+                                              pattern = paste0(year, "collage"),
+                                              full.names = TRUE)),
+                       stack = FALSE) %>%
+    magick::image_write(paste0(folder_loc, year, 'final_collage.jpg'))
 }
 
 #' build the image columns to be collaged
