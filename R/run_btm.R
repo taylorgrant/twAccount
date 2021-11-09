@@ -28,8 +28,11 @@ run_btm <- function(handle, data_source = c("timeline", "mentions"), n_topics, n
   d2 <<- file.path(d, as.character(Sys.Date()))
   # load udpipe model for POS tagging
   udpipe::udpipe_download_model(language = "english",
-                                            model_dir = aa)
-  ud_model <- udpipe::udpipe_load_model(list.files(path = aa, pattern = "*.udpipe", full.names = TRUE))
+                                            model_dir = aa,
+                                overwrite = FALSE)
+  ud_model <- udpipe::udpipe_load_model(list.files(path = aa,
+                                                   pattern = "*.udpipe",
+                                                   full.names = TRUE))
   f <- file.path(d2, glue::glue("{handle}_twitter_info.rds"))
 
   if (data_source == "timeline") {
