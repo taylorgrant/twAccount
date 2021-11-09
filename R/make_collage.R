@@ -18,19 +18,21 @@ make_collage <- function(year) {
 
   file_count <- length(dir(file.path(d2,year)))
 
-  if (file_count > 120) {
-    no_rows <- 12
-  } else {
-    no_rows <- 10
-  }
-  no_cols <- ceiling(file_count/no_rows)
+  # if (file_count > 120) {
+  #   no_rows <- 12
+  # } else {
+  #   no_rows <- 10
+  # }
+  no_cols <- 12
+  no_cols <- ceiling(file_count/no_cols)
 
   # get number of files that need to be blanks
   max_count <- no_rows*no_cols
-  blankfiles <- paste0("img",(file_count+1):max_count,"-",year,".jpg")
-  bftmp <- tidyr::crossing(blankfiles, year)
-  purrr::walk2(bftmp$blankfiles, bftmp$year, make_blanks)
-
+  if (file_count != max_count) {
+    blankfiles <- paste0("img",(file_count+1):max_count,"-",year,".jpg")
+    bftmp <- tidyr::crossing(blankfiles, year)
+    purrr::walk2(bftmp$blankfiles, bftmp$year, make_blanks)
+  }
   # count total files
   files <- dir(file.path(d2,year), full.names = TRUE)
 
