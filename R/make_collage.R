@@ -56,8 +56,8 @@ make_collage <- function(year) {
   nn <- tibble::tibble(a = seq(1, length(colfiles))) %>%
     dplyr::mutate(c = floor(a/10)) %>%
     dplyr::group_by(c) %>%
-    dplyr::slice(c(1,n())) %>%
-    dplyr::mutate(b = lag(a)) %>%
+    dplyr::slice(c(1, dplyr::n())) %>%
+    dplyr::mutate(b = dplyr::lag(a)) %>%
     dplyr::filter(!is.na(b))
   purrr::pwalk(list(nn$a, nn$b, nn$c), parse_cols)
   # build into final collage
