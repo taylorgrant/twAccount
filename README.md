@@ -34,8 +34,14 @@ remotes::install_github("taylorgrant/twAccount")
 # Full Usage 
 twitter_tm("BMWUSA", search_query = "bmw", topic_ct = 40, term_ct = 30)
 
-# If you already have a dataset extracted using rtweet, you can topic model with:
+# If you have a timeline from `rtweet` with/without mentions, and just want topic models 
 run_btm("BMWUSA", data_source = 'timeline', n_topics = 40, n_terms = 30)
+
+# If you have a timeline and want images 
+get_pics(dir_location, timeline)
+# If you want to make final collages
+unique(lubridate::year(timeline$created_at)) %>% 
+  purrr::walk(make_collage)
 ```
 
 The package provides an overall wrapper function `twitter_tm()` that

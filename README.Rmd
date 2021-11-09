@@ -38,8 +38,15 @@ remotes::install_github("taylorgrant/twAccount")
 # Full Usage 
 twitter_tm("BMWUSA", search_query = "bmw", topic_ct = 40, term_ct = 30)
 
-# If you already have a dataset extracted using rtweet, you can topic model with:
+# If you have a timeline from `rtweet` with/without mentions, and just want topic models 
 run_btm("BMWUSA", data_source = 'timeline', n_topics = 40, n_terms = 30)
+
+# If you have a timeline and want images 
+get_pics(dir_location, timeline)
+# If you want to make final collages
+unique(lubridate::year(timeline$created_at)) %>% 
+  purrr::walk(make_collage)
+
 ```
 
 
@@ -49,7 +56,7 @@ Once the data is extracted, a model is run to estimate topic models based upon t
 
 Estimation of the 2d space relies upon the [Jensen-Shannon Divergence](https://en.wikipedia.org/wiki/Jensen%E2%80%93Shannon_divergence){target="_blank"}, the estimates of which are then scaled via PCA. This allows for easy visualization of the topics on an X,Y axis. For example, if we took the last 3,200 tweets from the [BMWUSA](https://twitter.com/BMWUSA?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor){target="_blank"} account, a version of the 2d topic model representation would look like the below. This can be presented in a static graph, or in an html rmarkdown file using the `crosstalk` package, or you can simply use the d3 visualization from `LDAvis`.  
 
-```{r pressure, echo=FALSE, fig.cap="A caption", out.width = '90%'}
+```{r pressure, echo=FALSE, fig.cap="A caption", out.width = '90%', fig.retina = 1}
 knitr::include_graphics(here::here('man', "figures", "README-example-1.png"))
 ```
 
