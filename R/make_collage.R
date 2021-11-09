@@ -1,7 +1,7 @@
 #' Make a collage of images from Twitter timeline
 #'
-#' Create a 10xN or 12xN size collage. Takes photos and appends them into
-#' colume, then stitches columns together into collage. Collages are split out
+#' Create a 12xN size collage. Takes photos and appends them into
+#' column, then stitches columns together into collage. Collages are split out
 #' by the year images were posted. To ensure proper sizing, blank cells are
 #' created to fill out any NA or missing images.
 #'
@@ -9,6 +9,7 @@
 #'
 #' @return
 #' @export
+#' @importFrom stats lag
 #'
 #' @examples
 #' \dontrun{
@@ -52,12 +53,12 @@ make_collage <- function(year) {
       magick::image_append(stack = FALSE) %>%
       magick::image_write(paste0(folder_loc, year, "collage_",c,".jpg"))
   }
-  nn <- tibble(a = seq(1, length(colfiles))) %>%
-    mutate(c = floor(a/10)) %>%
-    group_by(c) %>%
-    slice(c(1,n())) %>%
-    mutate(b = lag(a)) %>%
-    filter(!is.na(b))
+  nn <- tibble::tibble(a = seq(1, length(colfiles))) %>%
+    dplyr::mutate(c = floor(a/10)) %>%
+    dplyr::group_by(c) %>%
+    dplyr::slice(c(1,n())) %>%
+    dplyr::mutate(b = lag(a)) %>%
+    dplyr::filter(!is.na(b))
   purrr::pwalk(list(nn$a, nn$b, nn$c), parse_cols)
   # build into final collage
   magick::image_append(magick::image_read(dir(file.path(folder_loc),

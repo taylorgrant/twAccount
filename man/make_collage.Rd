@@ -13,8 +13,8 @@ make_collage(year)
 
 }
 \description{
-Create a 10xN or 12xN size collage. Takes photos and appends them into
-colume, then stitches columns together into collage. Collages are split out
+Create a 12xN size collage. Takes photos and appends them into
+column, then stitches columns together into collage. Collages are split out
 by the year images were posted. To ensure proper sizing, blank cells are
 created to fill out any NA or missing images.
 }
