@@ -54,7 +54,7 @@ run_btm <- function(handle, data_source = c("timeline", "mentions"), n_topics, n
   k <- n_topics
 
   cat(crayon::red(paste0("Identifying ",k," topics within the ",data_source,"...\n")))
-  tm1 <- BTM::BTM(x, k = k, beta = 0.01, iter = 1000, trace = 100, detailed = TRUE)
+  tm1 <- BTM::BTM(x, k = k, beta = 0.01, iter = 5000, trace = 500, detailed = TRUE)
 
   # calculated and extract parameters
   phi <- t(tm1$phi)
