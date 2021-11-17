@@ -69,7 +69,7 @@ the below. This can be presented in a static graph, or in an html
 rmarkdown file using the `crosstalk` package, or you can simply use the
 d3 visualization from `LDAvis`.
 
-<img src="/Users/taylor_grant/R/twAccount/man/figures/README-example-1.png" title="A caption" alt="A caption" width="90%" />
+<img src="man/figures/README-example-1.png" width="80%" />
 
 ## Using the package
 
