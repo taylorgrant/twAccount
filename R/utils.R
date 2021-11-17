@@ -32,7 +32,7 @@ decode_links <- function(tbl) {
   # function
   cat(crayon::cyan("Decoding links used on Twitter...\n"))
 
-  decode_url <- possibly(function(shortlink){httr::GET(shortlink)$url},
+  decode_url <- purrr::possibly(function(shortlink){httr::GET(shortlink)$url},
                          otherwise = NA)
   urls <- tbl %>%
     dplyr::select(urls_expanded_url) %>%
