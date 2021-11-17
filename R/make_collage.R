@@ -17,6 +17,7 @@
 #' }
 make_collage <- function(year) {
 
+  year <- as.character(year)
   file_count <- length(dir(file.path(d2,year)))
   no_rows <- 12
   no_cols <- ceiling(file_count/no_rows)
