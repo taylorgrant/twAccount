@@ -45,14 +45,16 @@ get_twitter <- function(handle, search_query = NULL) {
   tl <- dplyr::mutate(tl, tsday = as.Date(created_at))
   tl <- dplyr::mutate(tl, dow = lubridate::wday(created_at, label=TRUE, abbr=FALSE))
   tl <- dplyr::mutate(tl, hr = lubridate::hour(created_at))
-
+  ## get links (this takes extra time)
+  links <- decode_links(tl)
   ## save if no mention search
   if (is.null(search_query)) {
     cat(crayon::blue("Putting things away...\n"))
     saveRDS(
       object = list(
         user = user,
-        timeline = tl
+        timeline = tl,
+        links = links
       ),
       file = file.path(d2, paste0(handle,"_twitter_info.rds"))
     )
@@ -68,6 +70,7 @@ get_twitter <- function(handle, search_query = NULL) {
     object = list(
       user = user,
       timeline = tl,
+      links = links,
       mentions = mentions
     ),
     file = file.path(d2, paste0(handle,"_twitter_info.rds"))
