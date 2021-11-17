@@ -31,11 +31,12 @@ dir_create <- function(x) {
 decode_links <- function(tbl) {
   # function
   cat(crayon::cyan("Decoding links used on Twitter...\n"))
+
   decode_url <- possibly(function(shortlink){httr::GET(shortlink)$url},
                          otherwise = NA)
   urls <- tbl %>%
     dplyr::select(urls_expanded_url) %>%
-    unnest(urls_expanded_url) %>%
+    tidyr::unnest(urls_expanded_url) %>%
     dplyr::filter(!is.na(urls_expanded_url)) %>%
     dplyr::filter(!grepl("pbs\\.twimg\\.com|twitter\\.com|t\\.co", urls_expanded_url))
 
