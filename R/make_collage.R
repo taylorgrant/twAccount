@@ -39,7 +39,7 @@ make_collage <- function(year) {
 
   # put together
   folder_loc <- file.path(d2, "local_cols/")
-  colfiles <- dir(folder_loc, pattern = year)
+  colfiles <- dir(folder_loc, pattern = as.character(year))
   # subset collages
   parse_cols <- function(a, b, c) {
     magick::image_read(file.path(folder_loc, colfiles)[b:a]) %>%
