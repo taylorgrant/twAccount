@@ -26,10 +26,12 @@ get_twitter <- function(handle, search_query = NULL) {
 
   # hard coding directory but building out proper folder structure
   aa <- file.path(here::here(), "account_analysis")
-  d <- file.path(here::here(), "account_analysis", fs::path_sanitize(handle))
+  aaa <- file.path(here::here(), 'account_analysis', "brand")
+  d <- file.path(aaa, fs::path_sanitize(handle))
   d2 <<- file.path(d, as.character(Sys.Date())) # put this into the environment
   dir_create <- function(x) ifelse(!dir.exists(x), dir.create(x), FALSE)
   dir_create(aa)
+  dir_create(aaa)
   dir_create(d)
   dir_create(d2)
 
