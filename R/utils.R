@@ -30,7 +30,7 @@ dir_create <- function(x) {
 #' }
 decode_links <- function(tbl) {
   # function
-  cat(crayon::cyan("Decoding links used on Twitter...\n"))
+  cat(crayon::cyan("Expanding short links used on Twitter...\n"))
 
   # decode_url <- purrr::possibly(function(shortlink){httr::GET(shortlink)$url},
   #                        otherwise = NA)
