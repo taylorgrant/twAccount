@@ -24,7 +24,7 @@ run_btm <- function(handle, data_source = c("timeline", "mentions"), n_topics, n
 
   # adding all directory locations
   aa <- file.path(here::here(), "account_analysis")
-  d <- file.path(here::here(), "account_analysis", fs::path_sanitize(handle))
+  d <- file.path(here::here(), "account_analysis", "brand", fs::path_sanitize(handle))
   d2 <<- file.path(d, as.character(Sys.Date()))
   # load udpipe model for POS tagging
   udpipe::udpipe_download_model(language = "english",
