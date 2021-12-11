@@ -30,11 +30,11 @@ twitter_tm <- function(handle, search_query = NULL, topic_ct, term_ct) {
   # build topic models
   if (is.null(search_query)) {
     cat(crayon::green('Short text topic modeling...\n'))
-    run_btm(handle, "timeline", n_topics = 40, n_terms = 30)
+    run_btm(handle, "timeline", n_topics = topic_ct, n_terms = term_ct)
   } else {
     cat(crayon::green('Short text topic modeling...\n'))
-    run_btm(handle, "timeline", n_topics = 40, n_terms = 30)
-    run_btm(handle, "mentions", n_topics = 40, n_terms = 30)
+    run_btm(handle, "timeline", n_topics = topic_ct, n_terms = term_ct)
+    run_btm(handle, "mentions", n_topics = topic_ct, n_terms = term_ct)
   }
 
 }

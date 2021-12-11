@@ -50,7 +50,7 @@ run_btm <- function(handle, data_source = c("timeline", "mentions"), n_topics, n
   pos_tagged <- as.data.frame(pos_tagged)
   # subsetting to parts of speech (noun model works best)
   x <- subset(pos_tagged, xpos %in% c("NN", "NNP", "NNS"))
-  # running the BTM model (hard coded at 40 topics right now)
+  # running the BTM model
   k <- n_topics
 
   cat(crayon::red(paste0("Identifying ",k," topics within the ",data_source,"...\n")))
