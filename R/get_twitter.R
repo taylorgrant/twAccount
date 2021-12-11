@@ -79,7 +79,7 @@ get_twitter <- function(handle, search_query = NULL) {
   )
 
   # picture collage from handle timeline
-  cat(crayon::blue(paste0("Saving pictures from ", handle,"'s timeline...\n")))
+  cat(crayon::blue(paste0("\nSaving pictures from ", handle,"'s timeline...\n")))
   pics <- get_pics(d2, tl)
   cat(crayon::blue("Making some collages...\n"))
   as.character(unique(pics$year)) %>%
