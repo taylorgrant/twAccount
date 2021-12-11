@@ -24,6 +24,7 @@ Imports:
     here,
     httr,
     LDAvis,
+    longurl,
     lubridate,
     magick,
     magrittr,
