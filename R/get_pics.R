@@ -23,6 +23,7 @@ get_pics <- function(dir, tbl) {
     ifelse(is.null(check),TRUE,FALSE)
   }
 
+  cat(crayon::blue(paste0("\nChecking urls first...\n")))
   tmp <- tl %>%
     dplyr::filter(!is.na(media_url)) %>%
     dplyr::select(status_id, ext_media_url, created_at) %>%
