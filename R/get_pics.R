@@ -13,7 +13,7 @@
 #' \dontrun{
 #' pics <- get_pics(d2, tl)
 #' }
-get_pics <- possibly(function(dir, tbl) {
+get_pics <- purrr::possibly(function(dir, tbl) {
   tmp <- tbl %>%
     dplyr::filter(!is.na(media_url)) %>%
     dplyr::select(status_id, ext_media_url, created_at) %>%

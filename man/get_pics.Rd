@@ -4,7 +4,7 @@
 \alias{get_pics}
 \title{Clean Twitter timeline and get images}
 \usage{
-get_pics(dir, tbl)
+get_pics(...)
 }
 \arguments{
 \item{dir}{directory to save files into (predetermined)}
