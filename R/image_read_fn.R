@@ -13,8 +13,8 @@
 #' }
 image_read_fn <- function(img) {
   # safe error
-  safe_image_read <- purrr::possibly(magick::image_read, otherwise = NULL)
-  safe_image_read(img) %>%
+  # safe_image_read <- purrr::possibly(magick::image_read, otherwise = NULL)
+  magick::image_read(img) %>%
     magick::image_scale("1000") %>%
     magick::image_border('white', '10x10')
 }
