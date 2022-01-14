@@ -13,7 +13,7 @@
 #' \dontrun{
 #' pics <- get_pics(d2, tl)
 #' }
-get_pics <- function(dir, tbl) {
+get_pics <- possibly(function(dir, tbl) {
   tmp <- tbl %>%
     dplyr::filter(!is.na(media_url)) %>%
     dplyr::select(status_id, ext_media_url, created_at) %>%
@@ -30,4 +30,4 @@ get_pics <- function(dir, tbl) {
 
   purrr::pwalk(list(tmp$year, tmp$index, tmp$img_ct, tmp$ext_media_url), extract_images)
   return(tmp)
-}
+}, otherwise = NULL)
