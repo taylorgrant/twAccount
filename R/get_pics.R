@@ -24,7 +24,7 @@ get_pics <- function(dir, tbl) {
   }
 
   cat(crayon::blue(paste0("\nChecking urls first...\n")))
-  tmp <- tl %>%
+  tmp <- tbl %>%
     dplyr::filter(!is.na(media_url)) %>%
     dplyr::select(status_id, ext_media_url, created_at) %>%
     dplyr::mutate(year = lubridate::year(created_at)) %>%
