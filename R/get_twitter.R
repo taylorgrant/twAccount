@@ -61,7 +61,7 @@ get_twitter <- function(handle, search_query = NULL) {
       file = file.path(d2, paste0(handle,"_twitter_info.rds"))
     )
 
-  } else
+  } else {
     # grab mentions via twitter search
     cat(crayon::blue(paste0("Searching for tweets mentioning '",search_query,"'\n")))
     mentions <- rtweet::search_tweets(q = search_query, n = 18000, type = "recent",
@@ -77,7 +77,7 @@ get_twitter <- function(handle, search_query = NULL) {
     ),
     file = file.path(d2, paste0(handle,"_twitter_info.rds"))
   )
-
+}
   # picture collage from handle timeline
   cat(crayon::blue(paste0("\nSaving pictures from ", handle,"'s timeline...\n")))
   pics <- get_pics(d2, tl)
